@@ -1,7 +1,12 @@
 import axios from 'axios';
 import { Patient, NewPatient, PatientFull, NewEntry, Entry } from '../types';
 
-const baseUrl = '/api/patients';
+// Use an absolute backend URL during development so the frontend can call the API
+// directly (avoids depending on the dev-server proxy). In production the SPA is
+// served from the same origin and the relative path will work.
+const baseUrl = import.meta.env && import.meta.env.DEV
+  ? 'http://localhost:3000/api/patients'
+  : '/api/patients';
 
 export const getAll = async (): Promise<Patient[]> => {
   const res = await axios.get<Patient[]>(baseUrl);
