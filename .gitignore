@@ -1,1 +1,12 @@
 node_modules
+
+# Ignore frontend build output
+frontend/dist/
+
+# Ignore frontend logs and build artifacts
+frontend-vite.log
+frontend.log
+
+# Ignore generated package-lock changes in node_modules path
+node_modules/**/*.package-lock.json
+
