@@ -4,19 +4,33 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "tsc": "tsc",
+    "dev": "ts-node-dev src/index.ts",
+    "dev:client": "npm --prefix frontend run dev",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:client\"",
+    "dev:all-local": "bash -lc \"npm run dev & npm run dev:client & wait\"",
+  "lint": "eslint -c eslint.config.cjs . --ext .js,.ts,.tsx || true",
+  "lint:ci": "eslint -c eslint.config.cjs . --ext .js,.ts,.tsx && npx tsc --noEmit",
+  "smoke": "node scripts/smoke_check.js",
+    "start": "node build/index.js",
+    "build:client": "npm --prefix frontend run build",
+    "build:all": "npm run build:client && npm run tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^5.1.0"
+    "concurrently": "^8.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.38.0",
-    "@stylistic/eslint-plugin": "^5.5.0",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.5",
     "@types/node": "^24.9.1",
+    "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@typescript-eslint/parser": "^8.46.2",
     "eslint": "^9.38.0",
